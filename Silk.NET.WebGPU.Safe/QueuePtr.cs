@@ -54,7 +54,7 @@ namespace Silk.NET.WebGPU.Safe
             _wgpu.QueueSetLabel(_ptr, marshalledLabel.Ptr);
         }
 
-        public void Submit(ReadOnlySpan<CommandBufferPtr> commands)
+        public void Submit(params ReadOnlySpan<CommandBufferPtr> commands)
         {
             CommandBuffer** commandBufferPtrs = stackalloc CommandBuffer*[commands.Length];
             
