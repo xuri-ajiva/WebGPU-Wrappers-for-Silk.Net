@@ -1,5 +1,5 @@
-﻿using ImGuiNET;
-using System;
+﻿using System;
+using Hexa.NET.ImGui;
 
 namespace Silk.NET.WebGPU.Extensions.ImGui
 {
@@ -9,7 +9,7 @@ namespace Silk.NET.WebGPU.Extensions.ImGui
 
     public readonly struct ImGuiFontConfig
     {
-        public ImGuiFontConfig(string fontPath, int fontSize, Func<ImGuiIOPtr, IntPtr>? getGlyphRange = null)
+        public ImGuiFontConfig(string fontPath, float fontSize, Func<ImGuiIOPtr, IntPtr>? getGlyphRange = null)
         {
             if (fontSize <= 0) throw new ArgumentOutOfRangeException(nameof(fontSize));
             FontPath = fontPath ?? throw new ArgumentNullException(nameof(fontPath));
@@ -18,7 +18,7 @@ namespace Silk.NET.WebGPU.Extensions.ImGui
         }
 
         public string FontPath { get; }
-        public int FontSize { get; }
+        public float FontSize { get; }
         public Func<ImGuiIOPtr, IntPtr>? GetGlyphRange { get; }
     }
 }

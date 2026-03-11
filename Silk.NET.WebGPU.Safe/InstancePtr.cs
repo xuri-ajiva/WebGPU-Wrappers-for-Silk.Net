@@ -12,7 +12,8 @@ namespace Silk.NET.WebGPU.Safe
     {
         public static unsafe InstancePtr CreateInstance(this WebGPU wgpu)
         {
-            return new(wgpu, wgpu.CreateInstance(new InstanceDescriptor()));
+            InstanceDescriptor descriptor = new();
+            return new(wgpu, wgpu.CreateInstance(ref descriptor));
         }
     }
 
@@ -20,7 +21,8 @@ namespace Silk.NET.WebGPU.Safe
     {
         private static readonly RentalStorage<(WebGPU, TaskCompletionSource<AdapterPtr>)> s_adapterRequests = new();
 
-        private static void AdapterRequestCallback(RequestAdapterStatus status, Adapter* adapter, byte* message, void* data)
+        private static void AdapterRequestCallback(RequestAdapterStatus status, Adapter* adapter, byte* message,
+            void* data)
         {
             var (wgpu, task) = s_adapterRequests.GetAndReturn((int)data);
 
@@ -31,6 +33,7 @@ namespace Silk.NET.WebGPU.Safe
 
                 return;
             }
+
             task.SetResult(new AdapterPtr(wgpu, adapter));
         }
 
@@ -49,6 +52,7 @@ namespace Silk.NET.WebGPU.Safe
         public static implicit operator Instance*(InstancePtr ptr) => ptr._ptr;
 
         #region CreateSurface
+
         public SurfacePtr CreateSurfaceFromAndroidNativeWindow(IntPtr nativeWindow, string? label = null)
         {
             var descriptor = new SurfaceDescriptorFromAndroidNativeWindow
@@ -58,10 +62,11 @@ namespace Silk.NET.WebGPU.Safe
             };
             using var marshalledLabel = new MarshalledString(label, NativeStringEncoding.UTF8);
 
-            return new SurfacePtr(_wgpu, _wgpu.InstanceCreateSurface(_ptr, new SurfaceDescriptor(
+            var surfaceDescriptor = new SurfaceDescriptor(
                 label: marshalledLabel.Ptr,
                 nextInChain: &descriptor.Chain
-                )));
+            );
+            return new SurfacePtr(_wgpu, _wgpu.InstanceCreateSurface(_ptr, in surfaceDescriptor));
         }
 
         public SurfacePtr CreateSurfaceFromHTMLCanvas(string selector, string? label = null)
@@ -75,10 +80,11 @@ namespace Silk.NET.WebGPU.Safe
             };
             using var marshalledLabel = new MarshalledString(label, NativeStringEncoding.UTF8);
 
-            return new SurfacePtr(_wgpu, _wgpu.InstanceCreateSurface(_ptr, new SurfaceDescriptor(
+            var surfaceDescriptor = new SurfaceDescriptor(
                 label: marshalledLabel.Ptr,
                 nextInChain: &descriptor.Chain
-                )));
+            );
+            return new SurfacePtr(_wgpu, _wgpu.InstanceCreateSurface(_ptr, in surfaceDescriptor));
         }
 
         public SurfacePtr CreateSurfaceFromMetalLayer(IntPtr layer, string? label = null)
@@ -90,10 +96,11 @@ namespace Silk.NET.WebGPU.Safe
             };
             using var marshalledLabel = new MarshalledString(label, NativeStringEncoding.UTF8);
 
-            return new SurfacePtr(_wgpu, _wgpu.InstanceCreateSurface(_ptr, new SurfaceDescriptor(
+            var surfaceDescriptor = new SurfaceDescriptor(
                 label: marshalledLabel.Ptr,
                 nextInChain: &descriptor.Chain
-                )));
+            );
+            return new SurfacePtr(_wgpu, _wgpu.InstanceCreateSurface(_ptr, in surfaceDescriptor));
         }
 
         public SurfacePtr CreateSurfaceFromWaylandSurface(IntPtr display, IntPtr surface, string? label = null)
@@ -101,30 +108,33 @@ namespace Silk.NET.WebGPU.Safe
             var descriptor = new SurfaceDescriptorFromWaylandSurface
             {
                 Chain = new ChainedStruct(sType: SType.SurfaceDescriptorFromWaylandSurface),
-                Display = (void*)display, 
+                Display = (void*)display,
                 Surface = (void*)surface
             };
             using var marshalledLabel = new MarshalledString(label, NativeStringEncoding.UTF8);
 
-            return new SurfacePtr(_wgpu, _wgpu.InstanceCreateSurface(_ptr, new SurfaceDescriptor(
+            var surfaceDescriptor = new SurfaceDescriptor(
                 label: marshalledLabel.Ptr,
                 nextInChain: &descriptor.Chain
-                )));
+            );
+            return new SurfacePtr(_wgpu, _wgpu.InstanceCreateSurface(_ptr, in surfaceDescriptor));
         }
 
-        public SurfacePtr CreateSurfaceFromWindowsHWND(IntPtr hwnd, string? label = null)
+        public SurfacePtr CreateSurfaceFromWindowsHWND(IntPtr hwnd, IntPtr? hInstance = null, string? label = null)
         {
             var descriptor = new SurfaceDescriptorFromWindowsHWND
             {
-                Chain = new ChainedStruct(sType: SType.SurfaceDescriptorFromWindowsHwnd), 
-                Hwnd = (void*)hwnd
+                Chain = new ChainedStruct(sType: SType.SurfaceDescriptorFromWindowsHwnd),
+                Hwnd = (void*)hwnd,
+                Hinstance = (void*)(hInstance ?? null),
             };
             using var marshalledLabel = new MarshalledString(label, NativeStringEncoding.UTF8);
 
-            return new SurfacePtr(_wgpu, _wgpu.InstanceCreateSurface(_ptr, new SurfaceDescriptor(
+            var surfaceDescriptor = new SurfaceDescriptor(
                 label: marshalledLabel.Ptr,
                 nextInChain: &descriptor.Chain
-                )));
+            );
+            return new SurfacePtr(_wgpu, _wgpu.InstanceCreateSurface(_ptr, in surfaceDescriptor));
         }
 
         public SurfacePtr CreateSurfaceFromXcbWindow(IntPtr connection, uint window, string? label = null)
@@ -132,15 +142,16 @@ namespace Silk.NET.WebGPU.Safe
             var descriptor = new SurfaceDescriptorFromXcbWindow
             {
                 Chain = new ChainedStruct(sType: SType.SurfaceDescriptorFromXcbWindow),
-                Connection = (void*)connection, 
+                Connection = (void*)connection,
                 Window = window
             };
             using var marshalledLabel = new MarshalledString(label, NativeStringEncoding.UTF8);
 
-            return new SurfacePtr(_wgpu, _wgpu.InstanceCreateSurface(_ptr, new SurfaceDescriptor(
+            var surfaceDescriptor = new SurfaceDescriptor(
                 label: marshalledLabel.Ptr,
                 nextInChain: &descriptor.Chain
-                )));
+            );
+            return new SurfacePtr(_wgpu, _wgpu.InstanceCreateSurface(_ptr, in surfaceDescriptor));
         }
 
         public SurfacePtr CreateSurfaceFromXlibWindow(IntPtr display, uint window, string? label = null)
@@ -148,16 +159,18 @@ namespace Silk.NET.WebGPU.Safe
             var descriptor = new SurfaceDescriptorFromXlibWindow
             {
                 Chain = new ChainedStruct(sType: SType.SurfaceDescriptorFromXlibWindow),
-                Display = (void*)display, 
+                Display = (void*)display,
                 Window = window
             };
             using var marshalledLabel = new MarshalledString(label, NativeStringEncoding.UTF8);
 
-            return new SurfacePtr(_wgpu, _wgpu.InstanceCreateSurface(_ptr, new SurfaceDescriptor(
+            var surfaceDescriptor = new SurfaceDescriptor(
                 label: marshalledLabel.Ptr,
                 nextInChain: &descriptor.Chain
-                )));
+            );
+            return new SurfacePtr(_wgpu, _wgpu.InstanceCreateSurface(_ptr, in surfaceDescriptor));
         }
+
         #endregion
 
         public bool HasWGSLLanguageFeature(WGSLFeatureName feature)
@@ -170,21 +183,22 @@ namespace Silk.NET.WebGPU.Safe
             _wgpu.InstanceProcessEvents(_ptr);
         }
 
-        public Task<AdapterPtr> RequestAdapter(SurfacePtr? compatibleSurface = null, 
+        public Task<AdapterPtr> RequestAdapter(SurfacePtr? compatibleSurface = null,
             PowerPreference powerPreference = default,
             BackendType backendType = default,
             Bool32 forceFallbackAdapter = default)
         {
             var task = new TaskCompletionSource<AdapterPtr>();
             int key = s_adapterRequests.Rent((_wgpu, task));
-            _wgpu.InstanceRequestAdapter(_ptr, 
-                new RequestAdapterOptions
-                {
-                    CompatibleSurface = compatibleSurface ?? (Surface*)null,
-                    PowerPreference = powerPreference,
-                    BackendType = backendType,
-                    ForceFallbackAdapter = forceFallbackAdapter,
-                }
+            var requestAdapterOptions = new RequestAdapterOptions
+            {
+                CompatibleSurface = compatibleSurface ?? (Surface*)null,
+                PowerPreference = powerPreference,
+                BackendType = backendType,
+                ForceFallbackAdapter = forceFallbackAdapter,
+            };
+            _wgpu.InstanceRequestAdapter(_ptr, in
+                requestAdapterOptions
                 , s_AdapterRequestCallback, (void*)key);
 
             return task.Task;

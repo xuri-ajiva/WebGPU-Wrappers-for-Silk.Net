@@ -8,7 +8,7 @@
 		<Authors>jupahe64</Authors>
 		<PackageId>SilkDotNet.WebGPUWrappers</PackageId>
 		<Version>0.2.0</Version>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -20,12 +20,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Silk.NET.Core" Version="2.22.0" />
-		<PackageReference Include="Silk.NET.WebGPU" Version="2.22.0" />
-		<PackageReference Include="Silk.NET.WebGPU.Extensions.WGPU" Version="2.22.0" />
-		<PackageReference Include="System.Memory" Version="4.6.3" />
-		<PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
-		<PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
+		<InternalsVisibleTo Include="Client.Renderer"/>
+		<InternalsVisibleTo Include="Client.Editor"/>
+	</ItemGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Silk.NET.WebGPU" />
+		<PackageReference Include="Silk.NET.WebGPU.Extensions.WGPU" />
+		<PackageReference Include="System.Memory" />
+		<PackageReference Include="System.Runtime.InteropServices" />
+		<PackageReference Include="System.Threading.Tasks" />
 	</ItemGroup>
 </Project>
 
