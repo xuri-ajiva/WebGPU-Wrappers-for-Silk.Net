@@ -1,0 +1,82 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="Silk.NET.Input.Sdl" Version="2.22.0" />
+    <PackageVersion Include="ImGui.NET" Version="1.91.0.1" />
+    <PackageVersion Include="Silk.NET.Assimp" Version="2.22.0" />
+    <PackageVersion Include="Silk.NET.Input" Version="2.22.0" />
+    <PackageVersion Include="Silk.NET.Input.Extensions" Version="2.22.0" />
+    <PackageVersion Include="Silk.NET.Windowing" Version="2.22.0" />
+    <PackageVersion Include="SixLabors.ImageSharp" Version="3.1.6" />
+    <PackageVersion Include="TinyDialogsNet" Version="2.0.0" />
+    <PackageVersion Include="Mars.Numerics" Version="5.3.1" />
+    <PackageVersion Include="YamlDotNet" Version="16.3.0" />
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="13.1.1" />
+    <PackageVersion Include="Aspire.Hosting.Docker" Version="13.0.2-preview.1.25603.5" />
+    <PackageVersion Include="Hexa.NET.ImGui" Version="2.2.9" />
+    <PackageVersion Include="Hexa.NET.ImGui.Backends.SDL3" Version="1.0.18" />
+    <PackageVersion Include="Hexa.NET.SDL3" Version="1.2.17" />
+    <PackageVersion Include="Hexa.NET.Utilities" Version="2.2.9" />
+    <PackageVersion Include="ImpromptuNinjas.UltralightSharp" Version="1.2.0-beta-r11" />
+    <PackageVersion Include="MemoryPack" Version="1.21.4" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.3.0" />
+    <PackageVersion Include="OneOf" Version="3.0.271" />
+    <PackageVersion Include="OneOf.SourceGenerator" Version="3.0.271" />
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.15.0" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.15.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.15.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.15.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.15.0" />
+    <PackageVersion Include="Photino.Blazor" Version="4.0.13" />
+    <PackageVersion Include="Polly" Version="8.6.5" />
+    <PackageVersion Include="RmlUi.Net" Version="1.0.1" />
+    <PackageVersion Include="Serilog" Version="4.3.1" />
+    <PackageVersion Include="Serilog.Enrichers.CallerInfo" Version="1.0.6" />
+    <PackageVersion Include="Serilog.Enrichers.Environment" Version="3.0.1" />
+    <PackageVersion Include="Serilog.Enrichers.Thread" Version="4.0.0" />
+    <PackageVersion Include="Serilog.Exceptions" Version="8.4.0" />
+    <PackageVersion Include="Serilog.Expressions" Version="5.1.0-dev-02309" />
+    <PackageVersion Include="Serilog.Extensions.Hosting" Version="10.0.0" />
+    <PackageVersion Include="Serilog.Settings.Configuration" Version="10.0.0" />
+    <PackageVersion Include="Serilog.Sinks.ApplicationInsights" Version="5.0.0" />
+    <PackageVersion Include="Serilog.Sinks.Console" Version="6.1.1" />
+    <PackageVersion Include="Serilog.Sinks.File" Version="7.0.1-dev-02315" />
+    <PackageVersion Include="Serilog.Sinks.OpenTelemetry" Version="4.2.1-nblumhardt-02317" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.3" />
+    <PackageVersion Include="GlmSharp-netstandard" Version="0.9.8.1" />
+    <PackageVersion Include="Mars.Life.Simulations" Version="5.3.1" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="10.0.3" />
+    <PackageVersion Include="Silk.NET.Input.Common" Version="2.23.0" />
+    <PackageVersion Include="Silk.NET.WebGPU" Version="2.23.0" />
+    <PackageVersion Include="Silk.NET.WebGPU.Native.WGPU" Version="2.23.0" />
+    <PackageVersion Include="Silk.NET.WebGPU.Extensions.WGPU" Version="2.23.0" />
+    <PackageVersion Include="NativeFileDialogExtendedSharp" Version="0.1.0" />
+    <PackageVersion Include="Silk.NET.Assimp" Version="2.23.0" />
+    <PackageVersion Include="SixLabors.ImageSharp" Version="3.1.12" />
+    <PackageVersion Include="Silk.NET.Core" Version="2.23.0" />
+    <PackageVersion Include="System.Memory" Version="4.6.3" />
+    <PackageVersion Include="System.Runtime.InteropServices" Version="4.3.0" />
+    <PackageVersion Include="System.Threading.Tasks" Version="4.3.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageVersion>
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" />
+    <PackageVersion Include="PolySharp" Version="1.15.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageVersion>
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+    <PackageVersion Include="TinyDialogsNet" Version="2.0.0" />
+    <PackageVersion Include="xunit" Version="2.9.3" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageVersion>
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.1" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.1" PrivateAssets="all" />
+    <PackageVersion Include="TinyDialogsNet." Version="2.0.0" />
+  </ItemGroup>
+</Project>
